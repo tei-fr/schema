@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" 
+     xmlns:xi="http://www.w3.org/2001/XInclude"
+     xmlns:s="http://www.ascc.net/xml/schematron" 
+     xmlns:rng="http://relaxng.org/ns/structure/1.0"
+     xml:lang="en" n="tei-oucs">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>TEI Talks</title>
+        <author>Sebastian Rahtz</author>
+      </titleStmt>
+      <publicationStmt>
+        <p> </p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>authored from scratch</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div>
+	<head>Changes</head>
+	<specGrp xml:id="p5">
+
+	  <elementSpec ident="TEI" mode="change">
+	    <content>
+
+	      <s:ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
+	      
+	      <s:pattern name="Metadata">
+		<s:rule context="tei:fileDesc">
+		  <s:assert test="tei:titleStmt/tei:author[not(.='')]">You have not provided an author
+		  name</s:assert>
+		  
+		  <s:assert test="tei:titleStmt/tei:title[not(.='')]">You have not provided a title for
+		  the document</s:assert>
+		  
+		  <s:assert test="tei:editionStmt/tei:edition/tei:date[not(.='')]">You have not provided a
+		  date for the document</s:assert>
+		</s:rule>
+		
+		<s:rule context="tei:revisionDesc">
+		  <s:assert test="tei:change/tei:date[contains(.,'$LastChangedDate:')]">You must
+		  have a Subversion $LastChangedDate:
+		  $ field in a revision statement</s:assert>
+		</s:rule>
+	      </s:pattern>
+	      
+	      <s:pattern name="Alt tags">
+		<s:rule context="tei:figure">
+		  <s:report test="not(tei:figDesc or tei:head)"> You should
+		  provide information in a figure from which
+		  I can construct an alt attribute in HTML </s:report>
+		</s:rule>
+	      </s:pattern>
+	      
+	      <s:pattern name="Tables">
+		
+		<s:rule context="tei:table">
+		  <s:report test="not(tei:head)">A table should have a
+		  caption, using a head element</s:report>
+		  <s:assert test="not(parent::tei:body)">Do not use tables to lay out the document body</s:assert>
+		</s:rule>
+	      </s:pattern>	
+
+	    </content>
+	  </elementSpec>
+
+	</specGrp>
+
+      </div>
+
+
+      <div>
+	<head>Deletions</head>
+	<specGrp xml:id="delete">
+
+        <elementSpec ident="add" module="core" mode="delete"/>
+        <elementSpec ident="alt" module="linking" mode="delete"/>
+        <elementSpec ident="altGrp" module="linking" mode="delete"/>
+        <elementSpec ident="altIdent" mode="delete"/>
+        <elementSpec ident="analytic" mode="delete"/>
+        <elementSpec ident="appInfo" mode="delete"/>
+        <elementSpec ident="application" mode="delete"/>
+        <elementSpec ident="argument" module="textstructure" mode="delete"/>
+        <elementSpec ident="attDef" mode="delete" module="tagdocs"/>
+        <elementSpec ident="attList" mode="delete" module="tagdocs"/>
+        <elementSpec ident="attRef" mode="delete" module="tagdocs"/>
+        <elementSpec ident="biblFull" mode="delete" module="core"/>
+        <elementSpec ident="biblStruct" mode="delete" module="core"/>
+        <elementSpec ident="binaryObject" mode="delete" module="core"/>
+        <elementSpec ident="byline" module="textstructure" mode="delete"/>
+        <elementSpec ident="cRefPattern" mode="delete"/>
+        <elementSpec ident="catDesc" mode="delete"/>
+        <elementSpec ident="catRef" mode="delete"/>
+        <elementSpec ident="category" mode="delete"/>
+        <elementSpec ident="choice" module="core" mode="delete"/>
+        <elementSpec ident="classCode" mode="delete"/>
+        <elementSpec ident="classDecl" mode="delete"/>
+        <elementSpec ident="closer" module="textstructure" mode="delete"/>
+        <elementSpec ident="corr" module="core" mode="delete"/>
+        <elementSpec ident="correction" mode="delete"/>
+        <elementSpec ident="creation" mode="delete"/>
+        <elementSpec ident="dateRange" module="core" mode="delete"/>
+        <elementSpec ident="dateline" module="textstructure" mode="delete"/>
+        <elementSpec ident="del" module="core" mode="delete"/>
+        <elementSpec ident="distinct" module="core" mode="delete"/>
+        <elementSpec ident="div1" module="textstructure" mode="delete"/>
+        <elementSpec ident="div2" module="textstructure" mode="delete"/>
+        <elementSpec ident="div3" module="textstructure" mode="delete"/>
+        <elementSpec ident="div4" module="textstructure" mode="delete"/>
+        <elementSpec ident="div5" module="textstructure" mode="delete"/>
+        <elementSpec ident="div6" module="textstructure" mode="delete"/>
+        <elementSpec ident="div7" module="textstructure" mode="delete"/>
+        <elementSpec ident="editorialDecl" mode="delete"/>
+        <elementSpec ident="epigraph" module="textstructure" mode="delete"/>
+        <elementSpec ident="equiv" mode="delete"/>
+        <elementSpec ident="expan" module="core" mode="delete"/>
+        <elementSpec ident="extent" mode="delete"/>
+        <elementSpec ident="floatingText" mode="delete"/>
+        <elementSpec ident="formula" module="figures" mode="delete"/>
+        <elementSpec ident="funder" mode="delete"/>
+        <elementSpec ident="gap" module="core" mode="delete"/>
+        <elementSpec ident="geoDecl" mode="delete"/>
+        <elementSpec ident="gloss" mode="delete" module="core"/>
+        <elementSpec ident="group" module="textstructure" mode="delete"/>
+        <elementSpec ident="handNote" mode="delete"/>
+        <elementSpec ident="headItem" module="core" mode="delete"/>
+        <elementSpec ident="headLabel" module="core" mode="delete"/>
+        <elementSpec ident="hyphenation" mode="delete"/>
+        <elementSpec ident="imprimatur" module="textstructure" mode="delete"/>
+        <elementSpec ident="index" module="core" mode="delete"/>
+        <elementSpec ident="interpretation" mode="delete"/>
+        <elementSpec ident="join" module="linking" mode="delete"/>
+        <elementSpec ident="joinGrp" module="linking" mode="delete"/>
+        <elementSpec ident="l" module="core" mode="delete"/>
+        <elementSpec ident="langUsage" mode="delete"/>
+        <elementSpec ident="language" mode="delete"/>
+        <elementSpec ident="lg" module="core" mode="delete"/>
+        <elementSpec ident="link" module="linking" mode="delete"/>
+        <elementSpec ident="linkGrp" module="linking" mode="delete"/>
+        <elementSpec ident="measure" module="core" mode="delete"/>
+        <elementSpec ident="measureGrp" mode="delete"/>
+        <elementSpec ident="meeting" module="core" mode="delete"/>
+        <elementSpec ident="mentioned" module="core" mode="delete"/>
+        <elementSpec ident="milestone" module="core" mode="delete"/>
+        <elementSpec ident="namespace" mode="delete"/>
+        <elementSpec ident="normalization" mode="delete"/>
+        <elementSpec ident="num" module="core" mode="delete"/>
+        <elementSpec ident="opener" module="textstructure" mode="delete"/>
+        <elementSpec ident="orig" module="core" mode="delete"/>
+        <elementSpec ident="pb" module="core" mode="delete"/>
+        <elementSpec ident="phr" module="analysis" mode="delete"/>
+        <elementSpec ident="postBox" module="core" mode="delete"/>
+        <elementSpec ident="postCode" module="core" mode="delete"/>
+        <elementSpec ident="postscript" mode="delete"/>
+        <elementSpec ident="refState" mode="delete"/>
+        <elementSpec ident="refsDecl" mode="delete"/>
+        <elementSpec ident="reg" module="core" mode="delete"/>
+        <elementSpec ident="relatedItem" mode="delete"/>
+        <elementSpec ident="rendition" mode="delete"/>
+        <elementSpec ident="rs" module="core" mode="delete"/>
+        <elementSpec ident="said" mode="delete"/>
+        <elementSpec ident="salute" module="textstructure" mode="delete"/>
+        <elementSpec ident="samplingDecl" mode="delete"/>
+        <elementSpec ident="segmentation" mode="delete"/>
+        <elementSpec ident="sic" module="core" mode="delete"/>
+        <elementSpec ident="signed" module="textstructure" mode="delete"/>
+        <elementSpec ident="sp" module="core" mode="delete"/>
+        <elementSpec ident="speaker" module="core" mode="delete"/>
+        <elementSpec ident="stage" module="core" mode="delete"/>
+        <elementSpec ident="stdVals" mode="delete"/>
+        <elementSpec ident="street" module="core" mode="delete"/>
+        <elementSpec ident="tagUsage" mode="delete"/>
+        <elementSpec ident="tagsDecl" mode="delete"/>
+        <elementSpec ident="taxonomy" mode="delete"/>
+        <elementSpec ident="teiCorpus" mode="delete"/>
+        <elementSpec ident="time" module="core" mode="delete"/>
+        <elementSpec ident="timeRange" module="core" mode="delete"/>
+        <elementSpec ident="timeline" module="linking" mode="delete"/>
+        <elementSpec ident="trailer" mode="delete"/>
+        <elementSpec ident="unclear" module="core" mode="delete"/>
+        <elementSpec ident="when" module="linking" mode="delete"/>
+
+
+        <classSpec predeclare="true" module="tei" type="atts"
+		   mode="delete" ident="att.declaring"/>
+
+        <classSpec predeclare="true" module="linking" type="atts" ident="att.global.linking"
+          mode="change">
+          <attList>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="synch" mode="delete"/>
+            <attDef ident="sameAs" mode="delete"/>
+            <attDef ident="copyOf" mode="delete"/>
+            <attDef ident="next" mode="delete"/>
+            <attDef ident="prev" mode="delete"/>
+            <attDef ident="exclude" mode="delete"/>
+            <attDef ident="select" mode="delete"/>
+          </attList>
+        </classSpec>
+
+        <elementSpec ident="email" module="core" mode="change">
+          <classes>
+            <memberOf key="model.addressLike"/>
+            <memberOf key="model.addrPart"/>
+          </classes>
+        </elementSpec>
+
+        <elementSpec ident="table" module="figures" mode="change">
+          <attList>
+            <attDef ident="preamble" mode="add">
+	      <datatype key="data.text"/>
+	    </attDef>
+	  </attList>
+        </elementSpec>
+
+	</specGrp>
+      </div>
+
+      <div>
+	<head>Dealing with examples</head>
+	<specGrp xml:id="egxml">
+	  <moduleRef url="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/relaxng.rng"/>
+    
+      <elementSpec ident="egXML" mode="change" module="tagdocs"
+		   ns="http://www.tei-c.org/ns/Examples">
+	<content>
+	  <rng:zeroOrMore>
+	    <rng:group>
+	      <rng:choice>
+		<rng:text/>
+		<rng:ref name="egXML"/>
+		<rng:ref name="macro.anyXML"/>
+	      </rng:choice>
+	    </rng:group>
+	  </rng:zeroOrMore>
+	</content>
+      </elementSpec>    
+  
+      <macroSpec ident="macro.anyThing" mode="add">
+	<content>
+	  <?NameList?>
+	</content>
+      </macroSpec>
+      
+      <macroSpec ident="macro.schemaPattern" mode="change" module="tagdocs">
+	<content>
+	  <group xmlns="http://relaxng.org/ns/structure/1.0">
+	    <choice>
+	      <text/>
+	      <oneOrMore>
+		<choice>
+		  <ref name="pattern"/>
+		  <ref name="define"/>
+		</choice>
+	      </oneOrMore>
+	    </choice>
+	  </group>
+	</content>
+      </macroSpec>
+
+      <macroSpec ident="anySchematron" mode="add">
+	<content>
+	  <element xmlns="http://relaxng.org/ns/structure/1.0">
+	    <nsName ns="http://www.ascc.net/xml/schematron"/>
+	    <zeroOrMore>
+	      <choice>
+		<attribute>
+		  <anyName/>
+		</attribute>
+		<ref name="anySchematron"/>
+		<text/>
+	      </choice>
+	    </zeroOrMore>
+	  </element>
+	</content>
+      </macroSpec>
+
+      <macroSpec ident="anyISOSchematron" mode="add">
+	<content>
+	  <element xmlns="http://relaxng.org/ns/structure/1.0">
+	    <nsName ns="http://purl.oclc.org/dsdl/schematron"/>
+	    <zeroOrMore>
+	      <choice>
+		<attribute>
+		  <anyName/>
+		</attribute>
+		<ref name="anyISOSchematron"/>
+		<text/>
+	      </choice>
+	    </zeroOrMore>
+	  </element>
+	</content>
+      </macroSpec>
+
+      <elementSpec ident="constraint" mode="change" module="tagdocs">
+	<content>
+	  <zeroOrMore xmlns="http://relaxng.org/ns/structure/1.0">
+	    <choice>
+	      <text/>
+	      <ref name="anySchematron"/>
+	      <ref name="anyISOSchematron"/>
+	    </choice>
+	  </zeroOrMore>
+	</content>
+      </elementSpec>
+
+      
+      
+      <!-- The goal here is to permit *any* element from the extension
+	   namespace The problem is that we can't do this via
+	   <elementSpec>, as it requires a name be specified on ident=,
+	   and separates content declaration from attribute declaration
+	   (maybe we could put the attribute declaration inside
+	   elementSpec/content/, but it's not how it is intended to
+	   work). So instead, we just define a macro which will resolve
+	   the RELAX NG declarations we want-->
+      
+      <macroSpec ident="anyAlien" mode="add">
+	<content>
+	  <element xmlns="http://relaxng.org/ns/structure/1.0">
+	    <nsName ns="http://www.example.org/ns/nonTEI"/>
+	    <zeroOrMore>
+	      <attribute>
+		<anyName/>
+		<data type="token"/>
+	      </attribute>
+	    </zeroOrMore>
+	    <zeroOrMore>
+	      <choice>
+		<text/>
+		<ref name="anyTEI"/>
+		<ref name="anyAlien"/>
+	      </choice>
+	    </zeroOrMore>
+	  </element>
+	</content>
+      </macroSpec>
+	</specGrp>
+      </div>
+      <div>
+	<head>XInclude</head>
+	<specGrp xml:id="xinclude">
+        <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="include"
+          ns="http://www.w3.org/2001/XInclude" mode="add">
+          <desc>The W3C XInclude element</desc>
+          <classes>
+            <memberOf key="model.global"/>
+          </classes>
+          <content>
+            <rng:optional>
+              <rng:ref name="fallback"/>
+            </rng:optional>
+          </content>
+          <attList>
+            <attDef ident="href">
+              <desc>pointer to the resource being included</desc>
+              <datatype>
+                <rng:text/>
+              </datatype>
+            </attDef>
+
+            <attDef ident="parse" usage="opt">
+              <defaultVal>xml</defaultVal>
+              <valList type="closed">
+                <valItem ident="xml"/>
+                <valItem ident="text"/>
+              </valList>
+            </attDef>
+
+            <attDef ident="xpointer" usage="opt">
+              <datatype>
+                <rng:text/>
+              </datatype>
+            </attDef>
+
+            <attDef ident="encoding" usage="opt">
+              <datatype>
+                <rng:text/>
+              </datatype>
+            </attDef>
+
+            <attDef ident="accept" usage="opt">
+              <datatype>
+                <rng:text/>
+              </datatype>
+            </attDef>
+
+            <attDef ident="accept-charset" usage="opt">
+              <datatype>
+                <rng:text/>
+              </datatype>
+            </attDef>
+
+            <attDef ident="accept-language" usage="opt">
+              <datatype>
+                <rng:text/>
+              </datatype>
+            </attDef>
+          </attList>
+        </elementSpec>
+
+        <elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="fallback"
+          ns="http://www.w3.org/2001/XInclude" mode="add">
+          <desc>Wrapper for fallback elements if an XInclude fails</desc>
+          <content>
+            <rng:text/>
+          </content>
+        </elementSpec>
+	</specGrp>
+      </div>
+
+      <div>
+	<head>Schema</head>
+
+      <schemaSpec ident="teitalks" start="TEI" prefix="tei_">
+        <moduleRef key="tei"/>
+        <moduleRef key="header"/>
+        <moduleRef key="core"/>
+        <moduleRef key="textstructure"/>
+        <moduleRef key="namesdates" include="persName forename surname affiliation"/>
+        <moduleRef key="linking"/>
+        <moduleRef key="tagdocs"/>
+        <moduleRef key="figures"/>
+	<specGrpRef target="#p5"/>
+	<specGrpRef target="#egxml"/>
+	<specGrpRef target="#changes"/>
+	<specGrpRef target="#delete"/>
+	<specGrpRef target="#xinclude"/>
+      </schemaSpec>
+      </div>
+    </body>
+  </text>
+</TEI>
